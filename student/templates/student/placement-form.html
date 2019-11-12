@@ -1,0 +1,298 @@
+<html>
+
+<head>
+    <title>
+        Placement Form
+    </title>
+    {% load staticfiles %}
+    <script>
+        var counter = 1;
+        var limit = 10;
+        function addCertificate(divName) {
+            if (counter == limit) {
+                alert("You have reached the limit of adding " + counter + " inputs");
+            }
+            else {
+                
+                certificate = 'Certificate' + (counter + 1)
+                var label = document.createElement('p');
+                label.id = certificate;
+                label.innerHTML = "<br>Certificate "+(counter+1);
+                var newdiv = document.createElement('input');
+                newdiv.type = "file";
+                newdiv.accept = ".pdf";
+                newdiv.name = certificate;
+                var descLabel = document.createElement('p');
+                descLabel.id = certificate+"descLabel"
+                descLabel.innerHTML="<br>Description<br>"
+                var desc = document.createElement('input');
+                desc.type = "text";
+                desc.name=certificate+"description";
+                document.getElementById(divName).appendChild(label);
+                document.getElementById(divName).appendChild(newdiv);
+                document.getElementById(divName).appendChild(descLabel);
+                document.getElementById(divName).appendChild(desc);
+                counter++;
+            }
+        }
+        function removeCertificate(divName) {
+            if (counter > 1) {
+                var list = document.getElementById(divName);
+                list.removeChild(list.lastChild);
+                list.removeChild(list.lastChild);
+                list.removeChild(list.lastChild);
+                list.removeChild(list.lastChild);
+                counter--;
+            }
+
+        }
+        function checkBacklogHistory() {
+            if (document.getElementById('yesCheck').checked) {
+                document.getElementById('backlogDetails').style.display = 'block';
+            } else {
+                document.getElementById('backlogDetails').style.display = 'none';
+            }
+        }
+    </script>
+</head>
+
+<body>
+    {% if error %}
+
+    {{error}}
+    <br><br>
+    {% endif %}
+    <form method="POST" action="{% url 'create' %}" id="placementForm">
+        {% csrf_token %}
+        Hall Ticket No.<br>
+        <input type="text" name="hallTicketNo" required><br><br>
+        First Name<br>
+        <input type="text" name="firstName" required><br><br>
+        Middle Name<br>
+        <input type="text" name="middleName"><br><br>
+        Last Name<br>
+        <input type="text" name="lastName" required><br><br>
+        Gender<br>
+        <input type="radio" name="gender" value="Male" checked required> Male<br>
+        <input type="radio" name="gender" value="Female"> Female<br>
+        <input type="radio" name="gender" value="Other"> Other<br><br>
+        Date Of Birth<br>
+        <input type="date" name="dob" required><br><br>
+        Father Or Guardian Name<br>
+        <input type="text" name="fatherOrGuardianName" required><br><br>
+        Father's Or Guardian's Occupation<br>
+        <input type="text" name="fatherOrGuardianOccupation" required><br><br>
+        Father's Or Guardian's Designation<br>
+        <input type="text" name="fatherOrGuardianDesignation"><br><br>
+        Father's Or Guardian's Annual Income<br>
+        <input type="number" name="fatherOrGuardianAnnualIncome"><br><br>
+        Mother's Name<br>
+        <input type="text" name="motherName" required><br><br>
+        Mother's Occupation<br>
+        <input type="text" name="motherOccupation" required><br><br>
+        Mother's Designation<br>
+        <input type="text" name="motherDesignation"><br><br>
+        Mother's Annual Income<br>
+        <input type="number" name="motherAnnualIncome"><br><br>
+        Student's Primary Email<br>
+        <input type="text" name="studentPrimaryEmail" required><br><br>
+        Student's Alternate Email<br>
+        <input type="text" name="studentAlternateEmail"><br><br>
+        Parent's Email<br>
+        <input type="text" name="parentEmail"><br><br>
+        Student's Primary Phone Number<br>
+        <input type="text" name="studentPrimaryNumber" required><br><br>
+        Student's Alternate Phone Number<br>
+        <input type="text" name="studentAlternateNumber"><br><br>
+        Father's or Guardian's Phone Number<br>
+        <input type="text" name="fatherOrGuardianNumber" required><br><br>
+        Mother's Phone Number<br>
+        <input type="text" name="motherNumber" required><br><br>
+        Landline<br>
+        <input type="text" name="landLine"><br><br>
+        Aadhar Card Number<br>
+        <input type="text" name="aadharNumber"><br><br>
+        PAN Card Number<br>
+        <input type="text" name="panNumber"><br><br>
+        Passport Number<br>
+        <input type="text" name="passportNumber"><br><br>
+        Present Address<br>
+        <textarea name="presentAddress" form="placementForm" cols="50" rows="5" required></textarea><br><br>
+        Permanent Address<br>
+        <textarea name="permanentAddress" form="placementForm" cols="50" rows="5" required></textarea><br><br>
+        <h2>10<sup>th</sup>Standard Details:</h2><br><br>
+        Board<br>
+        <select name="10thBoard" required>
+            <option value="SSC">SSC</option>
+            <option value="CBSE">CBSE</option>
+            <option value="ICSE">ICSE</option>
+            <option value="others">Others</option>
+        </select><br><br>
+        Year Of Passing<br>
+        <input type="text" name="10thyop" required><br><br>
+        School Name<br>
+        <input type="text" name="school" required><br><br>
+        10th CGPA<br>
+        <input type="number" name="10thgpa" min="0" max="10" step=".01" required><br><br>
+        <h2>Intermediate Or Equivalent Details</h2>
+        Board<br>
+        <select name="inter-Board" required>
+            <option value="BIE">BIE</option>
+            <option value="CBSE">CBSE</option>
+            <option value="ICSE">ICSE</option>
+            <option value="others">Others</option>
+        </select><br><br>
+        Year Of Passing<br>
+        <input type="text" name="inter-yop" required><br><br>
+        College Name<br>
+        <input type="text" name="college" required><br><br>
+        Percentage<br>
+        <input type="number" name="inter-percentage" min="0" max="1000" step=".01" required><br><br>
+        <h2>Engineering Details</h2><br><br>
+        Year Of Passing<br>
+        <input type="text" name="engineering-yop" required><br><br>
+        EAMCET/ ECET Rank<br>
+        <input type="number" name="eamcet-rank" min="1" required><br><br>
+        CATEGORY<br>
+        <select name="category" required>
+            <option value="OC">OC</option>
+            <option value="BC">BC</option>
+            <option value="OBC">OBC</option>
+            <option value="EBC">EBC</option>
+            <option value="SC">SC</option>
+            <option value="ST">ST</option>
+            <option value="PH">PH</option>
+            <option value="CAP">CAP</option>
+        </select><br><br>
+        Type of Admission<br>
+        <select name="typeOfAdmission" required>
+            <option value="Convener">Convener</option>
+            <option value="B-Category">B-Category</option>
+            <option value="SpotAdmission">Spot Admission</option>
+            <option value="Other">Other</option>
+        </select><br><br>
+        Branch<br>
+        <select name="branch" required>
+            <option value="CIVIL">CIVIL</option>
+            <option value="CSE">CSE</option>
+            <option value="ECE">ECE</option>
+            <option value="EEE">EEE</option>
+            <option value="IT">IT</option>
+            <option value="MECH">MECH</option>
+        </select><br><br>
+        <h2>Grade Points</h2><br><br>
+        1<sup>st</sup> Semester<br>
+        <input type="number" name="1semGrade" min="0" max="10" step=".01" required><br><br>
+        2<sup>nd</sup> Semester<br>
+        <input type="number" name="2semGrade" min="0" max="10" step=".01" required><br><br>
+        3<sup>rd</sup> Semester<br>
+        <input type="number" name="3semGrade" min="0" max="10" step=".01" required><br><br>
+        4<sup>th</sup> Semester<br>
+        <input type="number" name="4semGrade" min="0" max="10" step=".01" required><br><br>
+        5<sup>th</sup> Semester<br>
+        <input type="number" name="5semGrade" min="0" max="10" step=".01" required><br><br>
+        6<sup>th</sup> Semester<br>
+        <input type="number" name="6semGrade" min="0" max="10" step=".01"><br><br>
+        7<sup>th</sup> Semester<br>
+        <input type="number" name="7semGrade" min="0" max="10" step=".01"><br><br>
+        8<sup>th</sup> Semester<br>
+        <input type="number" name="8semGrade" min="0" max="10" step=".01"><br><br>
+        CGPA (*current):
+        <input type="number" name="cgpa" min="0" max="10" step=".01" required><br><br>
+        <h2>History Of Backlogs</h2><br><br>
+        Have/ had backlogs?<br>
+        <input type="radio" name="BacklogHistory" id="noCheck" value="no" onclick="checkBacklogHistory();"
+            required>No<br>
+        <input type="radio" name="BacklogHistory" id="yesCheck" value="yes" onclick="checkBacklogHistory();">Yes<br><br>
+        <div id="backlogDetails" style="display: none;">
+            <h2>Backlog Details</h2><br><br>
+            <b>Yes if you have/ had backlog</b>
+            1<sup>st</sup> Semester<br>
+            <input type="radio" name="1semBacklogHistory" value="no" checked required>No<br>
+            <input type="radio" name="1semBacklogHistory" value="yes">Yes<br><br>
+            1<sup>st</sup> Semester Completed?<br>
+            <input type="radio" name="1semStatus" value="completed" checked required>Completed<br>
+            <input type="radio" name="1semStatus" value="stillBacklog">Still Backlog<br><br>
+            2<sup>nd</sup> Semester<br>
+            <input type="radio" name="2semBacklogHistory" value="no" checked required>No<br>
+            <input type="radio" name="2semBacklogHistory" value="yes">Yes<br><br>
+            2<sup>nd</sup> Semester Completed?<br>
+            <input type="radio" name="2semStatus" value="completed" checked required>Completed<br>
+            <input type="radio" name="2semStatus" value="stillBacklog">Still Backlog<br><br>
+            3<sup>rd</sup> Semester<br>
+            <input type="radio" name="3semBacklogHistory" value="no" checked required>No<br>
+            <input type="radio" name="3semBacklogHistory" value="yes">Yes<br><br>
+            3<sup>rd</sup> Semester Completed?<br>
+            <input type="radio" name="3semStatus" value="completed" checked required>Completed<br>
+            <input type="radio" name="3semStatus" value="stillBacklog">Still Backlog<br><br>
+            4<sup>th</sup> Semester<br>
+            <input type="radio" name="4semBacklogHistory" value="no" checked required>No<br>
+            <input type="radio" name="4semBacklogHistory" value="yes">Yes<br><br>
+            4<sup>th</sup> Semester Completed?<br>
+            <input type="radio" name="4semStatus" value="completed" checked required>Completed<br>
+            <input type="radio" name="4semStatus" value="stillBacklog">Still Backlog<br><br>
+            5<sup>th</sup> Semester<br>
+            <input type="radio" name="5semBacklogHistory" value="no" checked required>No<br>
+            <input type="radio" name="5semBacklogHistory" value="yes">Yes<br><br>
+            5<sup>th</sup> Semester Completed?<br>
+            <input type="radio" name="5semStatus" value="completed" checked required>Completed<br>
+            <input type="radio" name="5semStatus" value="stillBacklog">Still Backlog<br><br>
+            6<sup>th</sup> Semester<br>
+            <input type="radio" name="6semBacklogHistory" value="no" checked required>No<br>
+            <input type="radio" name="6semBacklogHistory" value="yes">Yes<br><br>
+            6<sup>th</sup> Semester Completed?<br>
+            <input type="radio" name="6semStatus" value="completed" checked required>Completed<br>
+            <input type="radio" name="6semStatus" value="stillBacklog">Still Backlog<br><br>
+            7<sup>th</sup> Semester<br>
+            <input type="radio" name="7semBacklogHistory" value="no" checked>No<br>
+            <input type="radio" name="7semBacklogHistory" value="yes">Yes<br><br>
+            7<sup>th</sup> Semester Completed?<br>
+            <input type="radio" name="7semStatus" value="completed">Completed<br>
+            <input type="radio" name="7semStatus" value="not-yet" checked>Not yet<br>
+            <input type="radio" name="7semStatus" value="stillBacklog">Still Backlog<br><br>
+            8<sup>th</sup> Semester<br>
+            <input type="radio" name="8semBacklogHistory" value="no" checked>No<br>
+            <input type="radio" name="8semBacklogHistory" value="yes">Yes<br><br>
+            8<sup>th</sup> Semester Completed?<br>
+            <input type="radio" name="8semStatus" value="completed">Completed<br>
+            <input type="radio" name="8semStatus" value="not-yet" checked>Not yet<br>
+            <input type="radio" name="8semStatus" value="stillBacklog">Still Backlog<br><br>
+            <h3>Present No. of Backlogs</h3><br>
+            <input type="number" min="0" max="15" name="presentBacklogs" value="0"><br><br>
+        </div>
+        <h2>Upload Memos in pdf format</h2>
+        1<sup>st</sup> Semester<br>
+        <input type="file" name="1semMemo" accept=".pdf" required><br><br>
+        2<sup>nd</sup> Semester<br>
+        <input type="file" name="2semMemo" accept=".pdf" required><br><br>
+        3<sup>rd</sup> Semester<br>
+        <input type="file" name="3semMemo" accept=".pdf" required><br><br>
+        4<sup>th</sup> Semester<br>
+        <input type="file" name="4semMemo" accept=".pdf" required><br><br>
+        5<sup>th</sup> Semester<br>
+        <input type="file" name="5semMemo" accept=".pdf" required><br><br>
+        6<sup>th</sup> Semester<br>
+        <input type="file" name="6semMemo" accept=".pdf"><br><br>
+        7<sup>th</sup> Semester<br>
+        <input type="file" name="7semMemo" accept=".pdf"><br><br>
+        8<sup>th</sup> Semester<br>
+        <input type="file" name="8semMemo" accept=".pdf"><br><br>
+        <h2>Upload Co-curricular certificates if any (in pdf format)</h2><br>
+        <div id="dynamicInput">
+
+            <p id="Certificate1">Certificate 1</p><br>
+            <input type="file" name="Certificate1" accept=".pdf"><br>
+            <p id="Certificate1descLabel">Description<br></p>
+            <input type="text" name="Certificate1description"><br>
+
+        </div>
+        <br><br>
+        <input type="button" value="Add another certificate" onClick="addCertificate('dynamicInput');"><br><br>
+        <input type="button" value="Remove certificate" onClick="removeCertificate('dynamicInput');"><br><br>
+        <h3>Enter how many certificates you have atached</h3>
+        <input type="number" id="noOfCertificates" name="noOfCertificates" value="1"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>

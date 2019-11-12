@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "~/Desktop/myvenv/bin/python3",
+    "python.formatting.provider": "black"
+}

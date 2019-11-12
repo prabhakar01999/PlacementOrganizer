@@ -1,0 +1,153 @@
+<html>
+    <head>
+        <title>Question Bank</title> 
+        <style>
+        .bg-blue {
+  background:  #4272d7;
+}
+
+.bg-red {
+  background: #57b846;
+}
+
+.bg-gra-01 {
+  background: -webkit-gradient(linear, left bottom, left top, from(#fbc2eb), to(#a18cd1));
+  background: -webkit-linear-gradient(bottom, #c2c3fb 0%, #a18cd1 100%);
+  background: -moz-linear-gradient(bottom, #c8c2fb 0%, #a18cd1 100%);
+  background: -o-linear-gradient(bottom, #c2f4fb 0%, #a18cd1 100%);
+  background: linear-gradient(to top, #c2d1fb 0%, #a18cd1 100%);
+}
+
+.bg-gra-02 {
+  background: -webkit-gradient(linear, left bottom, right top, from(#fc2c77), to(#6c4079));
+  background: -webkit-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
+  background: -moz-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
+  background: -o-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
+  background: linear-gradient(to top right, #fc2c77 0%, #6c4079 100%);
+} 
+.card {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: #fff;
+}
+
+.card-4 {
+  background: #fff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+}
+
+.card-4 .card-body {
+  padding: 57px 15px;
+  padding-bottom: 65px;
+}
+
+@media (max-width: 767px) {
+  .card-4 .card-body {
+    padding: 50px 40px;
+  }
+} 
+.wrapper {
+  margin: 0 auto;
+}
+
+.wrapper--w960 {
+  max-width: 960px;
+}
+
+.wrapper--w780 {
+  max-width: 780px;
+}
+
+.wrapper--w680 {
+  max-width: 680px;
+} 
+.title {
+  font-size: 24px;
+  color: #525252;
+  font-weight: 400;
+  margin-bottom: 40px;
+} 
+.btn {
+  display: inline-block;
+  line-height: 50px;
+  padding: 0 50px;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  font-size: 18px;
+  color: #fff;
+  font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
+}
+
+.btn--radius {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.btn--radius-2 {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.btn--pill {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+
+.btn--green {
+  background: #57b846;
+}
+
+.btn--green:hover {
+  background: #4dae3c;
+}
+
+.btn--blue {
+  background: #4272d7;
+}
+
+.btn--blue:hover {
+  background: #3868cd;
+}
+        </style>
+    </head>
+    <body>
+            {% if error %}
+            {{error}}
+            <br><br>
+            {% endif %} 
+            <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+                <div class="wrapper wrapper--w680">
+                    <div class="card card-4">
+                        <div class="card-body"> 
+                                <h2 class="title" align="center">Question Bank Form</h2>
+        <form method="POST" action="{% url 'storeQuestionBank' %}" id="questionBank-form">
+            {% csrf_token %}
+            Hallticket Number:<br>
+            <input type="text" name="hallTicketNumber" required><br><br>
+            Company Name:<br>
+            <input type="text" name="company" required><br><br>
+            Date:<br>
+            <input type="date" name="date" required><br><br>
+            Round No.:<br>
+            <input type="number" name="round" required><br><br>
+            Questions:<br>
+            <textarea name="questions" form="questionBank-form" cols="75" rows="10" required></textarea><br><br>
+            <div class="p-t-15">
+                    <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+            </div>
+        </form>
+    </body>
+</html>
+

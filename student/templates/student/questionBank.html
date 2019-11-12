@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>Question Bank</title>
+    </head>
+    <body>
+            {% if error %}
+            {{error}}
+            <br><br>
+            {% endif %}
+        <form method="POST" action="{% url 'storeQuestionBank' %}" id="questionBank-form">
+            {% csrf_token %}
+            Hallticket Number:<br>
+            <input type="text" name="hallTicketNumber" required><br><br>
+            Company Name:<br>
+            <input type="text" name="company" required><br><br>
+            Date:<br>
+            <input type="date" name="date" required><br><br>
+            Round No.:<br>
+            <input type="number" name="round" required><br><br>
+            Questions:<br>
+            <textarea name="questions" form="questionBank-form" cols="75" rows="10" required></textarea><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>
