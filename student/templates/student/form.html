@@ -3,24 +3,28 @@
 
 <head>
     <!-- Required meta tags
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Colorlib Templates">
-    <meta name="author" content="Colorlib">
-    <meta name="keywords" content="Colorlib Templates">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <meta name="description" content="Colorlib Templates">
+ <meta name="author" content="Colorlib">
+ <meta name="keywords" content="Colorlib Templates">
 
-     Title Page
-    <title>Placement Registeration Form</title>
-    Font special for pages
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    Main CSS
-    <link href="css/main.css" rel="stylesheet" media="all">
-    {% load staticfiles %}
-    -->
+ Title Page
+ <title>Placement Registeration Form</title>
+ Font special for pages
+ <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+ Main CSS
+ <link href="css/main.css" rel="stylesheet" media="all">
+ {% load staticfiles %}
+ -->
     <style>
+        .required input:after {
+            content: "*";
+        }
+
         /* ==========================================================================
-   #FONT
-   ========================================================================== */
+ #FONT
+ ========================================================================== */
         .font-robo {
             font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
         }
@@ -30,8 +34,8 @@
         }
 
         /* ==========================================================================
-   #GRID
-   ========================================================================== */
+ #GRID
+ ========================================================================== */
         .row {
             display: -webkit-box;
             display: -webkit-flex;
@@ -64,8 +68,8 @@
         }
 
         /* ==========================================================================
-   #BOX-SIZING
-   ========================================================================== */
+ #BOX-SIZING
+ ========================================================================== */
         /**
  * More sensible default box-sizing:
  * css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
@@ -90,8 +94,8 @@
         }
 
         /* ==========================================================================
-   #RESET
-   ========================================================================== */
+ #RESET
+ ========================================================================== */
         /**
  * A very simple reset that sits on top of Normalize.css.
  */
@@ -135,7 +139,7 @@
 
         /**
  * 1. Reset Chrome and Firefox behaviour which sets a `min-width: min-content;`
- *    on fieldsets.
+ * on fieldsets.
  */
         fieldset {
             min-width: 0;
@@ -150,8 +154,8 @@
         }
 
         /* ==========================================================================
-   #PAGE WRAPPER
-   ========================================================================== */
+ #PAGE WRAPPER
+ ========================================================================== */
         .page-wrapper {
             min-height: 100vh;
         }
@@ -196,8 +200,8 @@
         }
 
         /* ==========================================================================
-   #BACKGROUND
-   ========================================================================== */
+ #BACKGROUND
+ ========================================================================== */
         .bg-blue {
             background: #2c6ed5;
         }
@@ -223,8 +227,8 @@
         }
 
         /* ==========================================================================
-   #SPACING
-   ========================================================================== */
+ #SPACING
+ ========================================================================== */
         .p-t-100 {
             padding-top: 100px;
         }
@@ -262,8 +266,8 @@
         }
 
         /* ==========================================================================
-   #WRAPPER
-   ========================================================================== */
+ #WRAPPER
+ ========================================================================== */
         .wrapper {
             margin: 0 auto;
         }
@@ -281,8 +285,8 @@
         }
 
         /* ==========================================================================
-   #BUTTON
-   ========================================================================== */
+ #BUTTON
+ ========================================================================== */
         .btn {
             display: inline-block;
             line-height: 50px;
@@ -332,8 +336,8 @@
         }
 
         /* ==========================================================================
-   #DATE PICKER
-   ========================================================================== */
+ #DATE PICKER
+ ========================================================================== */
         td.active {
             background-color: #2c6ed5;
         }
@@ -384,8 +388,8 @@
         }
 
         /* ==========================================================================
-   #FORM
-   ========================================================================== */
+ #FORM
+ ========================================================================== */
         input {
             outline: none;
             margin: 0;
@@ -544,8 +548,8 @@
         }
 
         /* ==========================================================================
-   #SELECT2
-   ========================================================================== */
+ #SELECT2
+ ========================================================================== */
         .select--no-search .select2-search {
             display: none !important;
         }
@@ -640,8 +644,8 @@
         }
 
         /* ==========================================================================
-   #TITLE
-   ========================================================================== */
+ #TITLE
+ ========================================================================== */
         .title {
             font-size: 24px;
             color: #525252;
@@ -650,8 +654,8 @@
         }
 
         /* ==========================================================================
-   #CARD
-   ========================================================================== */
+ #CARD
+ ========================================================================== */
         .card {
             -webkit-border-radius: 3px;
             -moz-border-radius: 3px;
@@ -741,93 +745,151 @@
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <h2 class="title">Placement Registeration Form</h2>
+                    <h2 class="title" align="center">Placement Registeration Form</h2>
                     <form method="POST" action="{% url 'create' %}" id="placementForm">
                         {% csrf_token %}
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Hall Ticket No.</label>
-                                    <input class="input--style-4" type="text" name="hallTicketNo" required>
+                                    <label class="required">Hall Ticket No.</label>
+                                    <font color="red">*</font>
+                                    <input class="input--style-4" type="text" name="hallTicketNo" pattern="[0-9,-]{15}"
+                                        required>
 
-                                    First Name<br>
-                                    <input class="input--style-4" type="text" name="firstName" required><br><br>
-                                    Middle Name<br>
-                                    <input class="input--style-4" type="text" name="middleName"><br><br>
-                                    Last Name<br>
-                                    <input class="input--style-4" type="text" name="lastName" required><br><br>
-                                    Gender
-                                    <input type="radio" name="gender" value="Male" checked required>male
+
+                                    <label>firstname:</label>
+
+                                    <font color="red">*</font>
+                                    <br>
+                                    <input class="input--style-4" type="text" name="firstName" pattern="[a-zA-Z]{1,15}"
+                                        required><br><br>
+
+                                    <label>last name:</label>
+
+                                    <font color="red">*</font>
+                                    <br>
+                                    <input class="input--style-4" type="text" name="middleName"
+                                        pattern="[a-zA-Z]{1,15}"><br><br>
+                                    middle name:<br>
+                                    <input class="input--style-4" type="text" name="lastName" pattern="[a-zA-Z]{1,15}"
+                                        required><br><br>
+
+                                    <label>gender:</label>
+
+                                    <font color="red">*</font>
+                                    <br>
+                                    <input type="radio" name="gender" value="Male" checked required> Male<br>
                                     <input type="radio" name="gender" value="Female"> Female<br>
                                     <input type="radio" name="gender" value="Other"> Other<br><br>
-                                    Date Of Birth<br>
+
+                                    <label>Date of Birth:</label>
+
+                                    <font color="red">*</font>
+                                    <br>
                                     <input class="input--style-4" type="date" name="dob" required><br><br>
-                                    Father Or Guardian Name<br>
+
+                                    <label>Father Or Guardian Name:</label>
+
+                                    <font color="red">*</font>
+                                    <br>
                                     <input class="input--style-4" type="text" name="fatherOrGuardianName"
-                                        required><br><br>
-                                    Father's Or Guardian's Occupation<br>
+                                        pattern="[a-zA-Z]{1,15}" required><br><br>
+
+                                    <label>Father's Or Guardian's Occupation:</label>
+
+                                    <font color="red">*</font>
+                                    <br>
                                     <input class="input--style-4" type="text" name="fatherOrGuardianOccupation"
-                                        required><br><br>
+                                        pattern="[a-zA-Z]{1,15}" required><br><br>
                                     Father's Or Guardian's Designation<br>
                                     <input class="input--style-4" class="input--style-4" type="text"
-                                        name="fatherOrGuardianDesignation"><br><br>
+                                        name="fatherOrGuardianDesignation" pattern="[a-zA-Z]{1,15}"><br><br>
                                     Father's Or Guardian's Annual Income<br>
-                                    <input class="input--style-4" type="number"
-                                        name="fatherOrGuardianAnnualIncome"><br><br>
-                                    Mother's Name<br>
-                                    <input class="input--style-4" type="text" name="motherName" required><br><br>
-                                    Mother's Occupation<br>
-                                    <input class="input--style-4" type="text" name="motherOccupation" required><br><br>
-                                    Mother's Designation<br>
-                                    <input class="input--style-4" type="text" name="motherDesignation"><br><br>
-                                    Mother's Annual Income<br>
-                                    <input class="input--style-4" type="number" name="motherAnnualIncome"><br><br>
-                                    Student's Primary Email<br>
-                                    <input class="input--style-4" type="text" name="studentPrimaryEmail"
+                                    <input class="input--style-4" type="number" name="fatherOrGuardianAnnualIncome"
+                                        pattern="[0-9]{1,15}"><br><br>
+                                    Mother's Name
+                                    <font color="red">*</font><br>
+                                    <input class="input--style-4" type="text" name="motherName" pattern="[a-zA-Z]{1,15}"
                                         required><br><br>
+                                    Mother's Occupation
+                                    <font color="red">*</font><br>
+                                    <input class="input--style-4" type="text" name="motherOccupation"
+                                        pattern="[a-zA-Z]{1,15}" required><br><br>
+                                    Mother's Designation<br>
+                                    <input class="input--style-4" type="text" name="motherDesignation"
+                                        pattern="[a-zA-Z]{1,15}"><br><br>
+                                    Mother's Annual Income<br>
+                                    <input class="input--style-4" type="number" name="motherAnnualIncome"
+                                        pattern="[0-9]{1,15}"><br><br>
+                                    Student's Primary Email
+                                    <font color="red">*</font>
+                                    <br>
+                                    <input class="input--style-4" type="text" name="studentPrimaryEmail"
+                                        pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" required><br><br>
                                     Student's Alternate Email<br>
                                     <input class="input--style-4" class="input--style-4" type="text"
-                                        name="studentAlternateEmail"><br><br>
+                                        name="studentAlternateEmail" pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"><br><br>
                                     Parent's Email<br>
-                                    <input class="input--style-4" type="text" name="parentEmail"><br><br>
-                                    Student's Primary Phone Number<br>
+                                    <input class="input--style-4" type="text" name="parentEmail"
+                                        pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"><br><br>
+                                    Student's Primary Phone Number
+                                    <font color="red">*</font>
+                                    <br>
                                     <input class="input--style-4" type="text" name="studentPrimaryNumber"
-                                        required><br><br>
+                                        pattern="[0-9]{10}" required><br><br>
                                     Student's Alternate Phone Number<br>
-                                    <input class="input--style-4" type="text" name="studentAlternateNumber"><br><br>
-                                    Father's or Guardian's Phone Number<br>
+                                    <input class="input--style-4" type="text" name="studentAlternateNumber"
+                                        pattern="[0-9]{10}"><br><br>
+                                    Father's or Guardian's Phone Number
+                                    <font color="red">*</font>
+                                    <br>
                                     <input class="input--style-4" type="text" name="fatherOrGuardianNumber"
+                                        pattern="[0-9]{10}" required><br><br>
+                                    Mother's Phone Number
+                                    <font color="red">*</font>
+                                    <br>
+                                    <input class="input--style-4" type="text" name="motherNumber" pattern="[0-9]{10}"
                                         required><br><br>
-                                    Mother's Phone Number<br>
-                                    <input class="input--style-4" type="text" name="motherNumber" required><br><br>
                                     Landline<br>
                                     <input class="input--style-4" type="text" name="landLine"><br><br>
                                     Aadhar Card Number<br>
-                                    <input class="input--style-4" class="input--style-4" type="text"
-                                        name="aadharNumber"><br><br>
+                                    <input class="input--style-4" class="input--style-4" type="text" name="aadharNumber"
+                                        pattern="[0-9]{12}"><br><br>
                                     PAN Card Number<br>
-                                    <input class="input--style-4" type="text" name="panNumber"><br><br>
+                                    <input class="input--style-4" type="text" name="panNumber"
+                                        pattern="^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$"><br><br>
                                     Passport Number<br>
-                                    <input class="input--style-4" type="text" name="passportNumber"><br><br>
+                                    <input class="input--style-4" type="text" name="passportNumber"
+                                        pattern="^[A-PR-WY][1-9]\d\s?\d{4}[1-9]$"><br><br>
                                     Present Address<br>
                                     <textarea class="input--style-4" name="presentAddress" form="placementForm"
                                         cols="50" rows="5" required></textarea><br><br>
-                                    Permanent Address<br>
+                                    Permanent Address
+                                    <font color="red">*</font>
+                                    <br>
                                     <textarea class="input--style-4" name="permanentAddress" form="placementForm"
                                         cols="50" rows="5" required></textarea><br><br>
                                     <h2>10<sup>th</sup>Standard Details:</h2><br><br>
                                     Board<br>
-                                    <select class="input--style-4" name="10thBoard" required>
+                                    <select name="10thBoard" required>
                                         <option value="SSC">SSC</option>
                                         <option value="CBSE">CBSE</option>
                                         <option value="ICSE">ICSE</option>
                                         <option value="others">Others</option>
                                     </select><br><br>
-                                    Year Of Passing<br>
-                                    <input class="input--style-4" type="text" name="10thyop" required><br><br>
-                                    School Name<br>
+                                    Year Of Passing
+                                    <font color="red">*</font>
+                                    <br>
+                                    <input class="input--style-4" type="text" name="10thyop" pattern="[0-9]{4}"
+                                        required><br><br>
+                                    School Name
+                                    <font color="red">*</font>
+                                    <br>
                                     <input class="input--style-4" type="text" name="school" required><br><br>
-                                    10th CGPA<br>
+                                    10th CGPA
+                                    <font color="red">*</font>
+
+                                    <br>
                                     <input class="input--style-4" type="number" name="10thgpa" min="0" max="10"
                                         step=".01" required><br><br>
                                     <h2>Intermediate Or Equivalent Details</h2>
@@ -838,17 +900,27 @@
                                         <option value="ICSE">ICSE</option>
                                         <option value="others">Others</option>
                                     </select><br><br>
-                                    Year Of Passing<br>
+                                    Year Of Passing
+                                    <font color="red">*</font>
+                                    <br>
                                     <input class="input--style-4" type="text" name="inter-yop" required><br><br>
-                                    College Name<br>
+                                    College Name
+                                    <font color="red">*</font>
+                                    <br>
                                     <input class="input--style-4" type="text" name="college" required><br><br>
-                                    Percentage<br>
+                                    Percentage
+                                    <font color="red">*</font>
+                                    <br>
                                     <input class="input--style-4" type="number" name="inter-percentage" min="0"
                                         max="1000" step=".01" required><br><br>
                                     <h2>Engineering Details</h2><br><br>
-                                    Year Of Passing<br>
+                                    Year Of Passing
+                                    <font color="red">*</font>
+                                    <br>
                                     <input class="input--style-4" type="text" name="engineering-yop" required><br><br>
-                                    EAMCET/ ECET Rank<br>
+                                    EAMCET/ ECET Rank
+                                    <font color="red">*</font>
+                                    <br>
                                     <input class="input--style-4" type="number" name="eamcet-rank" min="1"
                                         required><br><br>
                                     CATEGORY<br>
@@ -862,14 +934,18 @@
                                         <option value="PH">PH</option>
                                         <option value="CAP">CAP</option>
                                     </select><br><br>
-                                    Type of Admission<br>
+                                    Type of Admission
+                                    <font color="red">*</font>
+                                    <br>
                                     <select name="typeOfAdmission" required>
                                         <option value="Convener">Convener</option>
                                         <option value="B-Category">B-Category</option>
                                         <option value="SpotAdmission">Spot Admission</option>
                                         <option value="Other">Other</option>
                                     </select><br><br>
-                                    Branch<br>
+                                    Branch
+                                    <font color="red">*</font>
+                                    <br>
                                     <select name="branch" required>
                                         <option value="CIVIL">CIVIL</option>
                                         <option value="CSE">CSE</option>
@@ -878,36 +954,39 @@
                                         <option value="IT">IT</option>
                                         <option value="MECH">MECH</option>
                                     </select><br><br>
-                                    <h2>Grade Points</h2><br><br>
-                                    1<sup>st</sup> Semester<br>
+                                    <h2>Grade Points</h2>
+                                    <br><br>
+                                    1<sup>st</sup> Semester
+                                    <font color="red">*</font>
+                                    <br>
                                     <input class="input--style-4" type="number" name="1semGrade" min="0" max="10"
                                         step=".01" required><br><br>
-                                    2<sup>nd</sup> Semester<br>
+                                    2<sup>nd</sup> Semester <font color="red">*</font><br>
                                     <input class="input--style-4" type="number" name="2semGrade" min="0" max="10"
                                         step=".01" required><br><br>
-                                    3<sup>rd</sup> Semester<br>
+                                    3<sup>rd</sup> Semester <font color="red">*</font><br>
                                     <input class="input--style-4" type="number" name="3semGrade" min="0" max="10"
                                         step=".01" required><br><br>
-                                    4<sup>th</sup> Semester<br>
+                                    4<sup>th</sup> Semester <font color="red">*</font><br>
                                     <input class="input--style-4" type="number" name="4semGrade" min="0" max="10"
                                         step=".01" required><br><br>
-                                    5<sup>th</sup> Semester<br>
+                                    5<sup>th</sup> Semester <font color="red">*</font><br>
                                     <input class="input--style-4" type="number" name="5semGrade" min="0" max="10"
                                         step=".01" required><br><br>
-                                    6<sup>th</sup> Semester<br>
+                                    6<sup>th</sup> Semester <font color="red">*</font><br>
                                     <input class="input--style-4" type="number" name="6semGrade" min="0" max="10"
                                         step=".01"><br><br>
-                                    7<sup>th</sup> Semester<br>
+                                    7<sup>th</sup> Semester <font color="red">*</font><br>
                                     <input class="input--style-4" type="number" name="7semGrade" min="0" max="10"
                                         step=".01"><br><br>
-                                    8<sup>th</sup> Semester<br>
+                                    8<sup>th</sup> Semester <font color="red">*</font><br>
                                     <input class="input--style-4" type="number" name="8semGrade" min="0" max="10"
                                         step=".01"><br><br>
                                     CGPA (*current):
                                     <input class="input--style-4" type="number" name="cgpa" min="0" max="10" step=".01"
                                         required><br><br>
                                     <h2>History Of Backlogs</h2><br><br>
-                                    Have/ had backlogs?<br>
+                                    Have/ had backlogs? <font color="red">*</font><br>
                                     <br>
 
                                     <input type="radio" name="BacklogHistory" id="noCheck" value="no"
@@ -977,21 +1056,21 @@
                                         <input type="number" min="0" max="15" name="presentBacklogs" value="0"><br><br>
                                     </div>
                                     <h2>Upload Memos in pdf format</h2>
-                                    1<sup>st</sup> Semester<br>
+                                    1<sup>st</sup> Semester <font color="red">*</font><br>
                                     <input type="file" name="1semMemo" accept=".pdf" required><br><br>
-                                    2<sup>nd</sup> Semester<br>
+                                    2<sup>nd</sup> Semester <font color="red">*</font><br>
                                     <input type="file" name="2semMemo" accept=".pdf" required><br><br>
-                                    3<sup>rd</sup> Semester<br>
+                                    3<sup>rd</sup> Semester <font color="red">*</font><br>
                                     <input type="file" name="3semMemo" accept=".pdf" required><br><br>
-                                    4<sup>th</sup> Semester<br>
+                                    4<sup>th</sup> Semester <font color="red">*</font><br>
                                     <input type="file" name="4semMemo" accept=".pdf" required><br><br>
-                                    5<sup>th</sup> Semester<br>
+                                    5<sup>th</sup> Semester <font color="red">*</font><br>
                                     <input type="file" name="5semMemo" accept=".pdf" required><br><br>
-                                    6<sup>th</sup> Semester<br>
+                                    6<sup>th</sup> Semester <font color="red">*</font><br>
                                     <input type="file" name="6semMemo" accept=".pdf"><br><br>
-                                    7<sup>th</sup> Semester<br>
+                                    7<sup>th</sup> Semester <br>
                                     <input type="file" name="7semMemo" accept=".pdf"><br><br>
-                                    8<sup>th</sup> Semester<br>
+                                    8<sup>th</sup> Semester <br>
                                     <input type="file" name="8semMemo" accept=".pdf"><br><br>
                                     <h2>Upload Co-curricular certificates if any (in pdf format)</h2><br>
                                     <div id="dynamicInput">
@@ -999,9 +1078,12 @@
                                         <p id="Certificate1">Certificate 1</p><br>
                                         <input type="file" name="Certificate1" accept=".pdf"><br>
                                         <p id="Certificate1descLabel">Description<br></p>
-                                        <input type="text" class="input--style-4" name="Certificate1description"><br>
+                                        <input type="text" name="Certificate1description"><br>
                                     </div>
-                                    <h3>Enter how many certificates you have atached</h3>
+                                    <br><br>
+        <input type="button" class="btn btn--radius-2 btn--blue" value="Add another certificate" onClick="addCertificate('dynamicInput');"><br><br>
+        <input type="button" class="btn btn--radius-2 btn--blue" value="Remove certificate" onClick="removeCertificate('dynamicInput');"><br><br>
+				<h3>Enter how many certificates you have atached</h3>
         <input type="number" class="input--style-4" id="noOfCertificates" name="noOfCertificates" value="1"><br><br>
                                 </div>
 
